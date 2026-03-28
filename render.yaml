@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: api-server
+    env: node
+    region: frankfurt
+    buildCommand: |
+      corepack enable
+      pnpm install --frozen-lockfile=false
+      pnpm --filter @workspace/api-server run build
+    startCommand: |
+      pnpm --filter @workspace/api-server run start
+    envVars:
+      NODE_ENV: production
